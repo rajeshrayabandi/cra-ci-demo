@@ -16,7 +16,7 @@ node {
     stage('Push image') {
 	    
         // Push the image
-        sh 'scp -o StrictHostKeyChecking=No sample-app.tar root@192.168.1.120:/var/www/html/'
+        sh 'scp -o StrictHostKeyChecking=No sample-app.tar root@192.168.1.120:/root/'
         
         // Stop the running container
         sh 'ssh -o StrictHostKeyChecking=No root@192.168.1.120 docker stop sample-container'
