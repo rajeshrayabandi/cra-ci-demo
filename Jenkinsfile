@@ -31,7 +31,7 @@ node {
         sh 'ssh -o StrictHostKeyChecking=No root@192.168.1.120 docker load -i sample-app.tar'
             
         // Run the container
-        sh 'ssh -o StrictHostKeyChecking=No root@192.168.1.120 docker run -d --name sample-container -p 9126:9126 --restart=always sample-app'    
+        sh 'ssh -o StrictHostKeyChecking=No root@192.168.1.120 docker run -d --name sample-container -p 80:80 --restart=always sample-app'    
     }
 
     stage('Remove image from Jenkins') {
