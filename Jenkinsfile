@@ -16,22 +16,22 @@ node {
     stage('Push image') {
 	    
         // Push the image
-        sh 'scp -o StrictHostKeyChecking=No sample-app.tar root@your_host_ip:/root'
+        sh 'scp -o StrictHostKeyChecking=No sample-app.tar root@192.168.1.120:/var/www/html/'
         
         // Stop the running container
-        sh 'ssh -o StrictHostKeyChecking=No root@your_host_ip docker stop sample-container'
+        sh 'ssh -o StrictHostKeyChecking=No root@192.168.1.120 docker stop sample-container'
             
         // Remove the running container   
-        sh 'ssh -o StrictHostKeyChecking=No root@your_host_ip docker rm sample-container'
+        sh 'ssh -o StrictHostKeyChecking=No root@192.1681.120 docker rm sample-container'
         
         // Remove the current image 
-        sh 'ssh -o StrictHostKeyChecking=No root@your_host_ip docker rmi sample-app'
+        sh 'ssh -o StrictHostKeyChecking=No root@192.168.1.120 docker rmi sample-app'
             
         // Load the new image
-        sh 'ssh -o StrictHostKeyChecking=No root@your_host_ip docker load -i sample-app.tar'
+        sh 'ssh -o StrictHostKeyChecking=No root@192.168.1.120 docker load -i sample-app.tar'
             
         // Run the container
-        sh 'ssh -o StrictHostKeyChecking=No root@your_host_ip docker run -d --name sample-container -p 80:80 --restart=always sample-app'    
+        sh 'ssh -o StrictHostKeyChecking=No root@192.168.1.120 docker run -d --name sample-container -p 9126:9126 --restart=always sample-app'    
     }
 
     stage('Remove image from Jenkins') {
